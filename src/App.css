@@ -1,0 +1,197 @@
+/* Reset básico */
+* {
+	padding: 0;
+	margin: 0;
+	font-family: arial;
+}
+
+/* Variables CSS para colores y espaciados */
+:root {
+	--color-primary: #050606;
+	--color-secondary: #be263f;
+	--color-success: #cc2e2e;
+	--color-task: #fa0404;
+	--color-bg: #3aad3e;
+	--color-text: #060606;
+	--color-text-light: #0a0a0a;
+	--color-hover: #ea3a27;
+	--spacing-sm: 5px;
+	--spacing-md: 10px;
+	--spacing-lg: 15px;
+}
+
+/* Estilos base */
+body {
+	background-color: var(--color-bg);
+}
+
+#root {
+	width: 100%;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+/* Tipografía */
+h1 {
+	margin: var(--spacing-md);
+	font-size: clamp(36px, 5vw, 64px);
+	color: var(--color-primary);
+}
+
+/* Componentes de formulario */
+form {
+	background-color: var(--color-primary);
+	padding: var(--spacing-lg);
+	margin: var(--spacing-md);
+	color: var(--color-bg);
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+	max-width: 600px;
+}
+
+label {
+	font-weight: bold;
+	margin: var(--spacing-sm);
+}
+
+input {
+	margin: var(--spacing-sm);
+	color: var(--color-primary);
+	background-color: var(--color-bg);
+	padding: var(--spacing-sm);
+	border: none;
+	border-radius: 5px;
+	width: 90%;
+	max-width: 400px;
+}
+
+textarea {
+	color: var(--color-primary);
+	background-color: var(--color-bg);
+	padding: var(--spacing-sm);
+	width: 90%;
+	max-width: 500px;
+	min-height: 100px;
+	border-radius: 5px;
+	resize: vertical;
+}
+
+select {
+	border: var(--color-primary) 3px solid;
+	border-radius: 5px;
+	padding: 7.5px;
+	color: var(--color-primary);
+	font-weight: bold;
+	background-color: var(--color-bg);
+	width: 90%;
+	max-width: 200px;
+}
+
+input[type="submit"] {
+	background-color: var(--color-secondary);
+	color: var(--color-text-light);
+	padding: var(--spacing-md);
+	width: 90%;
+	max-width: 200px;
+	font-size: 15px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+input[type="submit"]:hover {
+	background-color: var(--color-hover);
+	transform: translateY(-2px);
+}
+
+/* Lista de tareas */
+#taskList {
+	width: 90%;
+	max-width: 800px;
+	margin: var(--spacing-md);
+	padding: var(--spacing-lg);
+	background-color: var(--color-primary);
+	border-radius: 10px;
+	border: var(--color-bg) 5px double;
+	color: var(--color-bg);
+}
+
+.counters {
+	width: 90%;
+	max-width: 800px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	color: var(--color-primary);
+	flex-wrap: wrap;
+	gap: var(--spacing-md);
+}
+
+/* Estilos de tarea individual */
+.task {
+	margin-top: var(--spacing-md);
+	background: linear-gradient(to bottom, var(--color-task) 0%, var(--color-bg) 25%);
+	padding: var(--spacing-md);
+	color: var(--color-text);
+	border-radius: 5px;
+	transition: transform 0.2s;
+}
+
+.task:hover {
+	transform: translateX(5px);
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.taskTitle {
+	margin-bottom: var(--spacing-md);
+	padding: var(--spacing-sm);
+	border-bottom: 2px solid var(--color-primary);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.task:has(> div > input[type="checkbox"]:checked) {
+	background: linear-gradient(to bottom, var(--color-success) 0%, var(--color-bg) 25%);
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+	.counters {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+
+	input[type="submit"] {
+		width: 50%;
+	}
+
+	form {
+		padding: var(--spacing-md);
+	}
+}
+
+@media (max-width: 480px) {
+	#taskList {
+		padding: var(--spacing-md);
+	}
+
+	.task {
+		padding: var(--spacing-sm);
+	}
+}
+
+.counters b {
+	color: var(--color-secondary);
+	font-size: 1.2em;
+}
+
+.counters b.pending {
+	color: var(--color-hover);
+}
